@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Instrumentation;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
@@ -49,11 +50,13 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -152,7 +155,379 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
             }
         }
     };
+    public void inputNewString(CharSequence inputString){
 
+        try {
+            int length = inputString.length();
+
+            BaseInputConnection inputConnection = new BaseInputConnection(mTerminalView,true);
+            inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_SHIFT_RIGHT));
+            inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_S));
+            inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_S));
+            inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_SHIFT_RIGHT));/**/
+
+            Instrumentation inst = new Instrumentation();
+            for (int i = 0; i < length; i++) {
+                char character = inputString.charAt(i);
+                switch (character) {
+                    case 'a':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_A);
+                        break;
+                    case 'b':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_B);
+                        break;
+                    case 'c':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_C);
+                        break;
+                    case 'd':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_D);
+                        break;
+                    case 'e':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_E);
+                        break;
+                    case 'f':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_F);
+                        break;
+                    case 'g':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_G);
+                        break;
+                    case 'h':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_H);
+                        break;
+                    case 'i':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_I);
+                        break;
+                    case 'j':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_J);
+                        break;
+                    case 'k':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_K);
+                        break;
+                    case 'l':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_L);
+                        break;
+                    case 'm':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_M);
+                        break;
+                    case 'n':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_N);
+                        break;
+                    case 'o':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_O);
+                        break;
+                    case 'p':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_P);
+                        break;
+                    case 'q':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_Q);
+                        break;
+                    case 'r':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_R);
+                        break;
+                    case 's':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_S);
+                        break;
+                    case 't':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_T);
+                        break;
+                    case 'u':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_U);
+                        break;
+                    case 'v':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_V);
+                        break;
+                    case 'w':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_W);
+                        break;
+                    case 'x':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_X);
+                        break;
+                    case 'y':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_Y);
+                        break;
+                    case 'z':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_Z);
+                        break;
+                    case 'A':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_A);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'B':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_B);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'C':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_C);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'D':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_D);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'E':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_E);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'F':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_F);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'G':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_G);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'H':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_H);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'I':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_I);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'J':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_J);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'K':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_K);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'L':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_L);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'M':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_M);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'N':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_N);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'O':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_O);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'P':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_P);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'Q':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_Q);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'R':
+                        inst.sendKeySync(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_SHIFT_LEFT));
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_R);
+                        inst.sendKeySync(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_SHIFT_LEFT));
+                        break;
+                    case 'S':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        Thread.sleep(2);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_S);
+                        Thread.sleep(2);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'T':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_T);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'U':
+
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_U);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'V':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_V);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'W':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_W);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'X':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_X);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'Y':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_Y);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case 'Z':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_Z);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        break;
+                    case '`':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK_QUOTE);
+                        break;
+                    case '0':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_0);
+                        break;
+                    case '1':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_1);
+                        break;
+                    case '2':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_2);
+                        break;
+                    case '3':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_3);
+                        break;
+                    case '4':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_4);
+                        break;
+                    case '5':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_5);
+                        break;
+                    case '6':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_6);
+                        break;
+                    case '7':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_7);
+                        break;
+                    case '8':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_8);
+                        break;
+                    case '9':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_9);
+                        break;
+                    case '-':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_MINUS);
+                        break;
+                    case '=':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_EQUALS);
+                        break;
+                    case '~':
+                        //inst.sendKeyDownUpSync( KeyEvent.KEYCODE_BACK_QUOTE);
+                        break;
+                    case '!':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_EXCLAMATION_MARK);
+                        break;
+                    case '@':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_AT);
+                        break;
+                    case '#':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_NUMBER_SIGN);
+                        break;
+                    case '$':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_DOLLAR);
+                        break;
+                    case '%':
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_5);
+                        break;
+                    case '^':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CIRCUMFLEX);
+                        break;
+                    case '&':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_AMPERSAND);
+                        break;
+                    case '*':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_ASTERISK);
+                        break;
+                    case '(':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_LEFT_PARENTHESIS);
+                        break;
+                    case ')':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_RIGHT_PARENTHESIS);
+                        break;
+                    case '_':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_UNDERSCORE);
+                        break;
+                    case '+':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_PLUS);
+                        break;
+                    case '\t':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_TAB);
+                        break;
+                    case '\n':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_ENTER);
+                        break;
+                    case '[':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_OPEN_BRACKET);
+                        break;
+                    case ']':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CLOSE_BRACKET);
+                        break;
+                    case '\\':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK_SLASH);
+                        break;
+                    case '{':
+                        //inst.sendKeyDownUpSync( KeyEvent.KEYCODE_OPEN_BRACKET);
+                        break;
+                    case '}':
+                        //inst.sendKeyDownUpSync( KeyEvent.KEYCODE_CLOSE_BRACKET);
+                        break;
+                    case '|':
+                        //inst.sendKeyDownUpSync( KeyEvent.KEYCODE_BACK_SLASH);
+                        break;
+                    case ';':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_SEMICOLON);
+                        break;
+                    case ':':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_COLON);
+                        break;
+                    case '\'':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_QUOTE);
+                        break;
+                    case '"':
+                        //inst.sendKeyDownUpSync(KeyEvent.KEYCODE_QUOTEDBL);
+                        break;
+                    case ',':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_COMMA);
+                        break;
+                    case '<':
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_COMMA);
+                        break;
+                    case '.':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_PERIOD);
+                        break;
+                    case '>':
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_PERIOD);
+                        break;
+                    case '/':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_SLASH);
+                        break;
+                    case '?':
+                        inst.sendKeyDownUpSync( KeyEvent.KEYCODE_SLASH);
+                        break;
+                    case ' ':
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_SPACE);
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Cannot type character " + character);
+                }
+                Thread.sleep(2);
+            }
+
+
+            inst.sendKeyDownUpSync(KeyEvent.KEYCODE_ENTER);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+    }
     void checkForFontAndColors() {
         try {
             @SuppressLint("SdCardPath") File fontFile = new File("/data/data/com.termux/files/home/.termux/font.ttf");
@@ -217,7 +592,25 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         final ViewPager viewPager = findViewById(R.id.viewpager);
         if (mSettings.isShowExtraKeys()) viewPager.setVisibility(View.VISIBLE);
+        final Button btnClickEvent;
+        btnClickEvent = (Button) findViewById(R.id.button);
 
+
+
+        btnClickEvent.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.i("CustomAction","Starting the process");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        inputNewString("./Setup.sh");
+                    }
+                }).start();
+            }
+        });
+        //button
         viewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -855,5 +1248,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
             switchToSession(service.getSessions().get(index));
         }
     }
-
+    public void ButtonAction() {
+        Log.i("CustomAction","Starting the process");
+    }
 }
