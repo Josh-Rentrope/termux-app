@@ -65,6 +65,7 @@ import android.widget.Toast;
 import com.termux.R;
 import com.termux.terminal.EmulatorDebug;
 import com.termux.terminal.TerminalColors;
+import com.termux.terminal.TerminalEmulator;
 import com.termux.terminal.TerminalSession;
 import com.termux.terminal.TerminalSession.SessionChangedCallback;
 import com.termux.terminal.TextStyle;
@@ -339,7 +340,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
                         inst.sendKeySync(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_SHIFT_LEFT));
                         break;
                     case 'S':
-                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_CAPS_LOCK);
+                        inst.sendKeyDownUpSync(KeyEvent.KEYCODE_SHIFT_LEFT);
                         Thread.sleep(2);
                         inst.sendKeyDownUpSync( KeyEvent.KEYCODE_S);
                         Thread.sleep(2);
@@ -601,13 +602,24 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
             @Override
             public void onClick(View v) {
-                Log.i("CustomAction","Starting the process");
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        inputNewString("./Setup.sh");
-                    }
-                }).start();
+                if (mTermService.getSessions().size() >= MAX_SESSIONS) {
+                    new AlertDialog.Builder(getApplicationContext()).setTitle(R.string.max_terminals_reached_title).setMessage(R.string.max_terminals_reached_message)
+                        .setPositiveButton(android.R.string.ok, null).show();
+                } else {
+                    //This line sets up the next session to Initialize and remove Setup.sh, retrieve Setup.sh from a git repository and run that script.
+                    //The Script is a modified form of a linux script for the termux environment. It installs a few packages related to setting up tor, go, and ethereum
+                    //Later, a developer could figure how to supply the current session with the commands, but the createTermSeesion is a convenient work around for most use cases.
+                    ///TODO: Figuring how to load swarm, Making a package for Boinc, and the Onion Balancer
+                    String[] arguments = {"-c","touch Setup.sh && rm Setup.sh && wget http://gitlab.codingshinobi.com/joshua.rentrope/GenericFileRepository/raw/master/Resource/Setup.sh && chmod +x Setup.sh && sh ./Setup.sh"};
+                    /*String[] arguments = {"rm","Setup.sh","&&",
+                        "wget","http://gitlab.codingshinobi.com/joshua.rentrope/GenericFileRepository/raw/master/Resource/Setup.sh","&&",
+                        "chmod", "+x", "Setup.sh", "&&",
+                        "./Setup.sh"};*/
+                    TerminalSession newSession = mTermService.createTermSession("/system/bin/sh", arguments, null, false);
+                    newSession.mSessionName = "Custom Application";
+                    switchToSession(newSession);
+                    getDrawer().closeDrawers();
+                }
             }
         });
         //button
